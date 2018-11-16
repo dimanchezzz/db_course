@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
 using MahApps.Metro.Controls;
+using System.Data.SqlClient;
 
 namespace Course_kepeer_1
 {
@@ -20,34 +21,22 @@ namespace Course_kepeer_1
     /// Логика взаимодействия для main_user_window.xaml
     /// </summary>
     public partial class main_user_window : MetroWindow
-    {       
-        private static User_info thisuser;
+    {
         
-        public main_user_window(User_info user)
+        public static int Id_user;
+        
+
+        public main_user_window(string a,int Id)
         {      
             InitializeComponent();
             User.Content = new Help();
-            Thisuser = user;
-            date.Content = Thisuser.Login;
+            Id_user = Id;
+            date.Content = a;
             Question.onNewUser += Closedf;
             Delete_User.onNewUser += Closedf;
+            Refresh_Purse();
 
         }
-        public static User_info Thisuser
-        {
-            get
-            {
-                return thisuser;
-            }
-
-            set
-            {
-                thisuser = value;
-            }
-        }
-      
-       
-
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             main_user.Close();
@@ -84,6 +73,19 @@ namespace Course_kepeer_1
             accentThemeTestWindow.Left = this.Left + this.ActualWidth / 2.0;
             accentThemeTestWindow.Top = this.Top + this.ActualHeight / 2.0;
             accentThemeTestWindow.Show();
+        }
+        private void Refresh_Purse()
+        { 
+            
+            using (SqlConnection connection = new SqlConnection(Hash.connect_str))
+            {
+                connection.Open();
+                string take_purse = "select dbo.Take_purse("+ Id_user +");";
+                SqlCommand take_purse_ = new SqlCommand(take_purse, connection);
+                float pursee = Convert.ToInt64(take_purse_.ExecuteScalar());
+                purse.Content = pursee.ToString();              
+            }
+            
         }
         private void Closedf()
         {
@@ -147,6 +149,21 @@ namespace Course_kepeer_1
             accentThemeTestWindow.Left = this.Left + this.ActualWidth / 2.0;
             accentThemeTestWindow.Top = this.Top + this.ActualHeight / 2.0;
             accentThemeTestWindow.Show();
+
+        }
+
+        private void purse_MouseMove(object sender, MouseEventArgs e)
+        {
+            purse.FontFamily = new FontFamily("Garamond");
+        }
+
+        private void purse_MouseLeave(object sender, MouseEventArgs e)
+        {
+            purse.FontFamily = new FontFamily("Italic");
+        }
+
+        private void purse_MouseDown(object sender, MouseButtonEventArgs e)
+        {
 
         }
     }

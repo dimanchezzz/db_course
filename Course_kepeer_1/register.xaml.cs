@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Data.SqlClient;
 
 namespace Course_kepeer_1
 {
@@ -26,6 +27,7 @@ namespace Course_kepeer_1
     
     public partial class register : Page, INotifyPropertyChanged
     {
+        Window a;
         public static string pattern = @"[^0-9a-zA-Z_-]+";
         public register()
         {
@@ -55,59 +57,45 @@ namespace Course_kepeer_1
         public static event MethodContainer onregClick;
         private void registers_Click(object sender, RoutedEventArgs e)
         {
-            if (Validation.GetHasError(log) == true || Validation.GetHasError(pw1) || Validation.GetHasError(pw2) || Validation.GetHasError(qu) || Validation.GetHasError(ans))
+            if (Validation.GetHasError(log) == true || Validation.GetHasError(pw1) )
             {
                 MessageBox.Show("Incorrectly filled data!");
                 return;
             }
-            else if (pw1.Password!=pw2.Password)
-            {
-                MessageBox.Show("Passwords do not match!");
-                pw1.Clear();
-                pw2.Clear();
-                return;
-            }         
+           
             else if (Regex.IsMatch(log.Text, pattern))
             {
                 MessageBox.Show("Invalid login format");
                 log.Clear();
                 return;
             }
-            else if (Regex.IsMatch(pw1.Password, pattern))
+
+            string sqlExpression = @"exec Bank_DB.dbo.Insert_client 
+                @name='"+log.Text+ "',@adress='" + adress.Text + "',@city='" + city.Text + "',@number=" + phone.Text + ",@email='" + email.Text + @"',
+                @password ='" + pw1.Password + "',@purse=" + purse.Text + ",@status='1',@passport="+ passport.Text+";";
+            string isEmpty = "select Bank_DB.dbo.IsEmpty('" + log.Text + "');";
+            using (SqlConnection connection = new SqlConnection(Hash.connect_str))
             {
-                MessageBox.Show("Invalid password format");
-                pw1.Clear();
-                pw2.Clear();
-                return;
-            }
-            using (First_model db = new First_model())
-            {
-                IEnumerable<User_info> users = db.User_info.Where(u => u.Login.Equals(log.Text));
-                if (users.Count() > 0)
+                connection.Open();
+                SqlCommand command_is_empty = new SqlCommand(isEmpty, connection);
+                int is_empty= Convert.ToInt32(command_is_empty.ExecuteScalar());
+                if (is_empty == 0)
                 {
-                    MessageBox.Show("Login already exists", "Error");
-                    return;
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    int number = command.ExecuteNonQuery();
+                    MessageBox.Show("Complete" + number);
+                    onregClick();
                 }
-                else
-                    try                  
-                    {
-                    User_info User1 = new User_info
-                    {
-                        Login = log.Text,
-                        Password = Hash.GetHash(pw1.Password),
-                        Question = qu.Text,
-                        Answer = Hash.GetHash(ans.Text)
-                    };
-                    db.User_info.Add(User1);
-                    db.SaveChanges();
-                    MessageBox.Show("ok", "Message");
-                        onregClick();                  
-                }
-                catch (Exception)
+                else if (is_empty==1)
                 {
-                    MessageBox.Show("Incorrectly filled data");
+                    MessageBox.Show("This name is used by onather user");
+                    log.Clear();
                 }
             }
+            
+
+
+
         }
         private void check_Checked(object sender, RoutedEventArgs e)
         {
@@ -143,6 +131,24 @@ namespace Course_kepeer_1
                 e.Handled = true;
             }
             else if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+            }
+            
+        }
+        
+
+        private void purse_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(Char.IsDigit(e.Text, 0) ))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(Char.IsDigit(e.Text, 0)))
             {
                 e.Handled = true;
             }

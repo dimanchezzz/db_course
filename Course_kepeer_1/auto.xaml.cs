@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
+using System.Data.SqlClient;
 namespace Course_kepeer_1
 {
     /// <summary>
@@ -32,28 +33,36 @@ namespace Course_kepeer_1
             Password_res pas = new Password_res();
             pas.Show();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+      private void  Button_Click(object sender, RoutedEventArgs e)
         {
-            using (First_model db = new First_model())
-            {
 
-                IEnumerable<User_info> users =  db.User_info.Where(u => u.Login.Equals(auto_log.Text));
-                if (users.Count() == 0)
+            string sqlExpression = "select dbo.auto_user('"+auto_log.Text +"', '"+auto_pass.Password+"');" ;
+            string take_id = " select dbo.Take_id('"+auto_log.Text+"');";
+          
+            using (SqlConnection connection = new SqlConnection(Hash.connect_str))
+            {
+               connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                Int32 number = Convert.ToInt32(command.ExecuteScalar());
+               if (number==0)
                 {
-                    MessageBox.Show("bad login", "Error");
-                    return;
+                    MessageBox.Show("invalid Data");
+                    auto_log.Clear();
+                    auto_pass.Clear();
                 }
-                User_info user = users.FirstOrDefault();
-                
-                if (user.Password.Equals(Hash.GetHash(auto_pass.Password)))
+               else if (number==1)
                 {
-                    main_user_window man = new main_user_window(user);
+                    SqlCommand take_id_ = new SqlCommand(take_id, connection);
+                    int id= Convert.ToInt32(take_id_.ExecuteScalar());
+                    
+                    string login = auto_log.Text;
+                    main_user_window man = new main_user_window(login,id);
                     man.Show();
                     a.Close();
+
                 }
-                else
-                    MessageBox.Show("bad password","Error");
-            }             
+
+            }                      
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string property)

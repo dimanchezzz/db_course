@@ -17,8 +17,8 @@ namespace Course_kepeer_1
                 return new ValidationResult(false, "value cannot be empty.");
             else
             {
-                if (value.ToString().Length < 8)
-                    return new ValidationResult(false, "Password cannot be less than 8 characters long.");                        
+                if (value.ToString().Length < 4)
+                    return new ValidationResult(false, "Password cannot be less than 4 characters long.");                        
             }         
             return ValidationResult.ValidResult;
         }

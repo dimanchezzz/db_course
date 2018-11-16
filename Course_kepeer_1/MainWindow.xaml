@@ -13,7 +13,7 @@
                       WindowStartupLocation="CenterScreen"
                       Icon="Resources/icon.png"
         x:Name="first_window"
-        Title="Kepeer" MinHeight="550" MinWidth="400" Width="400">
+        Title="Kepeer" MinHeight="650" MinWidth="400" Width="400">
     <Window.Resources>
         <ControlTemplate x:Key="validationErrorTemplate">
             <DockPanel>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Course_kepeer_1"
       mc:Ignorable="d" 
        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-      d:DesignHeight="450" d:DesignWidth="400"
+      d:DesignHeight="600" d:DesignWidth="400"
       Title="register">
     <Page.Resources>
         <ControlTemplate x:Key="validationErrorTemplate">
@@ -29,7 +29,7 @@
     </Page.Resources>
     <Grid>
         <TextBlock  Text="Register" FontSize="30" TextAlignment="Center"  Margin="0,10,0,0"  MinWidth="250" MinHeight="35 " VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <xctk:WatermarkTextBox MaxLength="15" PreviewKeyDown="log_PreviewKeyDown" MaxWidth="400" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" Name="log" Watermark="Login"  BorderThickness="0.5" BorderBrush="Black" Margin="60,80,60,0" Background="Transparent" MinWidth="250" MinHeight="35 "  VerticalAlignment="Top" FontSize="20"  TextAlignment="Center">
+        <xctk:WatermarkTextBox MaxLength="15" PreviewKeyDown="log_PreviewKeyDown" MaxWidth="400" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" Name="log" Watermark="Name"  BorderThickness="0.5" BorderBrush="Black" Margin="60,70,60,0" Background="Transparent" MinWidth="250" MinHeight="35 "  VerticalAlignment="Top" FontSize="20"  TextAlignment="Center">
             <xctk:WatermarkTextBox.Text>
                 <Binding Path="Name" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                     <Binding.ValidationRules>
@@ -38,7 +38,7 @@
                 </Binding>
             </xctk:WatermarkTextBox.Text>
         </xctk:WatermarkTextBox>
-        <xctk:WatermarkPasswordBox MaxLength="15" Watermark="Password"   MaxWidth="400" PreviewKeyDown="pw1_PreviewKeyDown" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  MinWidth="250" MinHeight="35 " BorderThickness="0.5" VerticalAlignment="Top" Background="Transparent" BorderBrush="Black" Margin="60,140,60,0" FontSize="20" ToolTip="Password" Name="pw1"  >
+        <xctk:WatermarkPasswordBox MaxLength="15" Watermark="Password"   MaxWidth="400" PreviewKeyDown="pw1_PreviewKeyDown" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  MinWidth="250" MinHeight="35 " BorderThickness="0.5" VerticalAlignment="Top" Background="Transparent" BorderBrush="Black" Margin="60,120,60,0" FontSize="20" ToolTip="Password" Name="pw1"  >
             <xctk:WatermarkPasswordBox.Text>
                 <Binding Path="Name" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
                     <Binding.ValidationRules>
@@ -47,35 +47,20 @@
                 </Binding>
             </xctk:WatermarkPasswordBox.Text>
         </xctk:WatermarkPasswordBox>
-        <xctk:WatermarkPasswordBox MaxLength="15" Watermark="Repeat"  MaxWidth="400" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" MinWidth="250" MinHeight="35 "  Name="pw2" BorderThickness="0.5" BorderBrush="Black" Background="Transparent" VerticalAlignment="Top" Margin="60,200,60,0" FontSize="20"  ToolTip="Repead Password" >
-            <xctk:WatermarkPasswordBox.Text>
-                <Binding Path="Name" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                    <Binding.ValidationRules>
-                        <local:PasswordValidator></local:PasswordValidator>
-                    </Binding.ValidationRules>
-                </Binding>
-            </xctk:WatermarkPasswordBox.Text>
-        </xctk:WatermarkPasswordBox>
-        <CheckBox VerticalAlignment="Bottom"  Checked="check_Checked" Unchecked="check_Unchecked" Margin="55,0,234,79" BorderThickness="1" Padding="4,-1,0,0" Name="check">I have read</CheckBox>
+        <xctk:WatermarkTextBox MaxLength="15" Watermark="Adress"  MaxWidth="400" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" MinWidth="250" MinHeight="35 "  Name="adress" BorderThickness="0.5" BorderBrush="Black" Background="Transparent" VerticalAlignment="Top" Margin="60,170,60,0" FontSize="20"  ToolTip="Adress" >
+        </xctk:WatermarkTextBox>
         <TextBlock Margin="141,0,185,81" VerticalAlignment="Bottom" Background="Transparent" Text="agreement" MouseDown="Click_agreement" Name="agreement" Mouse.MouseLeave="agreement_MouseLeave" Mouse.MouseMove="TextBlock_MouseMove" Cursor="Hand"/>
-        <xctk:WatermarkTextBox MaxLength="15"  Watermark="Question"  MaxWidth="400" MinWidth="250" MinHeight="35 " BorderThickness="0.5" Name="qu" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" BorderBrush="Black" Margin="60,260,60,0" Background="Transparent"   VerticalAlignment="Top" FontSize="20"  TextAlignment="Center">
-            <xctk:WatermarkTextBox.Text>
-                <Binding Path="Names" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                    <Binding.ValidationRules>
-                        <local:QuValidation></local:QuValidation>
-                    </Binding.ValidationRules>
-                </Binding>
-            </xctk:WatermarkTextBox.Text>
+        <xctk:WatermarkTextBox MaxLength="15"  ToolTip="City" Watermark="City"  MaxWidth="400" MinWidth="250" MinHeight="35 " BorderThickness="0.5" Name="city" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" BorderBrush="Black" Margin="60,220,60,0" Background="Transparent"   VerticalAlignment="Top" FontSize="20"  TextAlignment="Center">
         </xctk:WatermarkTextBox>
-        <xctk:WatermarkTextBox MaxLength="15" Watermark="Answer"  MaxWidth="400" MinWidth="250" MinHeight="35 " BorderThickness="0.5" Name="ans" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" BorderBrush="Black" Margin="60,320,60,0" Background="Transparent"   VerticalAlignment="Top" FontSize="20"  TextAlignment="Center">
-            <xctk:WatermarkTextBox.Text>
-                <Binding Path="Names" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
-                    <Binding.ValidationRules>
-                        <local:answerValid></local:answerValid>
-                    </Binding.ValidationRules>
-                </Binding>
-            </xctk:WatermarkTextBox.Text>
+        <xctk:WatermarkTextBox MaxLength="15" ToolTip="Emal" Watermark="Email"  MaxWidth="400" MinWidth="250" MinHeight="35 " BorderThickness="0.5" Name="email" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}" BorderBrush="Black" Margin="60,270,60,0" Background="Transparent"   VerticalAlignment="Top" FontSize="20"  TextAlignment="Center">
         </xctk:WatermarkTextBox>
+        <xctk:WatermarkTextBox MaxLength="15" PreviewTextInput="purse_PreviewTextInput" Watermark="Purse"   MaxWidth="400" PreviewKeyDown="pw1_PreviewKeyDown" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  MinWidth="250" MinHeight="35 " BorderThickness="0.5" VerticalAlignment="Top" Background="Transparent" BorderBrush="Black" Margin="60,320,60,0" FontSize="20" ToolTip="Purse" Name="purse"  >
+        </xctk:WatermarkTextBox>
+        <xctk:WatermarkTextBox MaxLength="15" Watermark="Phone number"  PreviewTextInput="phone_PreviewTextInput"  MaxWidth="400" PreviewKeyDown="pw1_PreviewKeyDown" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  MinWidth="250" MinHeight="35 " BorderThickness="0.5" VerticalAlignment="Top" Background="Transparent" BorderBrush="Black" Margin="60,370,60,0" FontSize="20" ToolTip="Purse" Name="phone"  >
+        </xctk:WatermarkTextBox>
+        <xctk:WatermarkTextBox MaxLength="15" Watermark="Passport"   MaxWidth="400" PreviewKeyDown="pw1_PreviewKeyDown" Validation.ErrorTemplate="{StaticResource validationErrorTemplate}"  MinWidth="250" MinHeight="35 " BorderThickness="0.5" VerticalAlignment="Top" Background="Transparent" BorderBrush="Black" Margin="60,420,60,0" FontSize="20" ToolTip="Purse" Name="passport"  >
+        </xctk:WatermarkTextBox>
+        <CheckBox VerticalAlignment="Bottom"  Checked="check_Checked" Unchecked="check_Unchecked" Margin="55,0,234,79" BorderThickness="1" Padding="4,-1,0,0" Name="check">I have read</CheckBox>
         <Button MinHeight="30" MinWidth="100" IsDefault="True" IsEnabled="False" VerticalAlignment="Bottom" MaxWidth="300" Margin="120,0,120,40" Content="Register" Click="registers_Click"   Name="registers"/>
     </Grid>
 </Page>

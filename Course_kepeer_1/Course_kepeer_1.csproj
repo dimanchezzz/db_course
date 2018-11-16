@@ -120,7 +120,6 @@
     <Compile Include="Change_pass.xaml.cs">
       <DependentUpon>Change_pass.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Coding.cs" />
     <Compile Include="Credit_calc.xaml.cs">
       <DependentUpon>Credit_calc.xaml</DependentUpon>
     </Compile>
@@ -140,9 +139,6 @@
     </Compile>
     <Compile Include="History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="labelpass.xaml.cs">
-      <DependentUpon>labelpass.xaml</DependentUpon>
     </Compile>
     <Compile Include="main_user_window.xaml.cs">
       <DependentUpon>main_user_window.xaml</DependentUpon>
@@ -220,10 +216,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="History.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="labelpass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
