@@ -9,6 +9,18 @@
       Title="Services">
 
     <Grid>
-        
+        <ListBox FontSize="25"  Name="services" SelectionChanged="services_SelectionChanged" HorizontalAlignment="Left" Width="365"/>
+
+        <TextBlock Height="35" x:Name="term" MinWidth="100"  FontSize="25" Margin="385,30,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="percent" MinWidth="100"  FontSize="20" Margin="385,90,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="restrict" MinWidth="100"  FontSize="20" Margin="385,150,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="date_create" MinWidth="100"  FontSize="20" Margin="385,210,0,0" HorizontalAlignment="Left" Width="331" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="comment" MinWidth="100" TextWrapping="Wrap"  FontSize="20" Margin="385,270,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="dep" MinWidth="100" TextWrapping="Wrap"  FontSize="20" Margin="385,320,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBox SelectionChanged="amount_SelectionChanged" PreviewTextInput="amount_PreviewTextInput" MinWidth="100" x:Name="amount" MaxLength="15" FontSize="20" Margin="385,370,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="pay"  MinWidth="100"  FontSize="20" Margin="385,430,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+
+        <Button Height="40" Name="drop" Width="150" FontSize="20" Content="Send" Margin="460,484,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="drop_Click"/>
+
     </Grid>
 </Page>

@@ -9,6 +9,15 @@
       Title="My_contract">
 
     <Grid>
-        
+        <ListBox FontSize="25"  Name="services" SelectionChanged="services_SelectionChanged" HorizontalAlignment="Left" Width="365"/>
+        <TextBlock Height="35" x:Name="date_start" MinWidth="100"  FontSize="25" Margin="385,30,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="date_end" MinWidth="100"  FontSize="20" Margin="385,90,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="pay" MinWidth="100" TextWrapping="Wrap"  FontSize="20" Margin="385,150,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="debt" MinWidth="100" TextWrapping="Wrap"  FontSize="20" Margin="385,210,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBlock Height="35" x:Name="status"  MinWidth="100"  FontSize="20" Margin="385,270,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <TextBox SelectionChanged="payment_SelectionChanged" PreviewTextInput="payment_PreviewTextInput" MinWidth="100" x:Name="payment" MaxLength="15" FontSize="20" Margin="385,370,0,0" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top"/>
+        <Button Height="40" Name="to_pay" Width="150" FontSize="20" Content="to pay" Margin="460,484,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="to_pay_Click"/>
+
+
     </Grid>
 </Page>

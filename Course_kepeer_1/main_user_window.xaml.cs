@@ -29,18 +29,22 @@ namespace Course_kepeer_1
         public main_user_window(string a,int Id)
         {      
             InitializeComponent();
-            User.Content = new Help();
             Id_user = Id;
             date.Content = a;
             Question.onNewUser += Closedf;
             Delete_User.onNewUser += Closedf;
             Refresh_Purse();
+            Services.Sent += refresh_serv;
 
         }
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             main_user.Close();
 
+        }
+        private void refresh_serv()
+        {
+            User.Content = new Services();
         }
       
         private void Mouse_move(object sender, MouseEventArgs e)
@@ -91,14 +95,17 @@ namespace Course_kepeer_1
         {
             Close();
         }
-        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
-        {
-            User.Content = new Help();
-        }
+       
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
-            User.Content = new Calc();
+            try
+            {
+                User.Content = new Calc();
+            } catch (Exception m)
+            {
+                MessageBox.Show("No internet connection");
+            }
         }
 
         private void MenuItem_Click_6(object sender, RoutedEventArgs e)
@@ -108,7 +115,7 @@ namespace Course_kepeer_1
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            User.Content = new Services();
         }
 
        
@@ -164,7 +171,8 @@ namespace Course_kepeer_1
 
         private void purse_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Add_purse a = new Add_purse();
+            a.Show();
         }
     }
 }

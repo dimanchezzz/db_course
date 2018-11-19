@@ -19,17 +19,17 @@ namespace Course_kepeer_1
     /// <summary>
     /// Логика взаимодействия для Calc.xaml
     /// </summary>
-    
+
     public partial class Calc : Page
     {
        
         public Calc()
-        { 
+        {
             InitializeComponent();
             isEnable += Isena;
             Calc_info go = new Calc_info();
             info = go.get_info();
-         
+
         }
         public delegate void MethodCHeck();
         public static event MethodCHeck isEnable;
@@ -44,124 +44,138 @@ namespace Course_kepeer_1
         List<float> info;
         public void Isena()
         {
-          if(blr.IsFocused)
+            try
             {
-                usa.Text = (float.Parse(blr.Text)/ info.ElementAt(0)).ToString();
-                eur.Text = ( float.Parse(blr.Text)/ info.ElementAt(1)).ToString();
-                rus.Text = ((float.Parse(blr.Text)/ info.ElementAt(4)) * 100).ToString();
-                uk.Text = (( float.Parse(blr.Text)/ info.ElementAt(6)) *100).ToString();
-                gbp.Text = (  float.Parse(blr.Text)/ info.ElementAt(5)).ToString();
-                bgn.Text = (  float.Parse(blr.Text)/ info.ElementAt(3)).ToString();                               
-            }
-          else if (usa.IsFocused)
+                if (blr.IsFocused)
+                {
+                    usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
+                    eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
+                    rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
+                    uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
+                    gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
+                    bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
+                }
+                else if (usa.IsFocused)
+                {
+                    blr.Text = (float.Parse(usa.Text) * info.ElementAt(0)).ToString();
+                    eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
+                    rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
+                    uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
+                    gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
+                    bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
+                }
+                else if (eur.IsFocused)
+                {
+                    blr.Text = (float.Parse(eur.Text) * info.ElementAt(1)).ToString();
+                    usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
+                    rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
+                    uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
+                    gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
+                    bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
+                }
+                else if (rus.IsFocused)
+                {
+                    //rus.Text = ((float.Parse(blr.Text)/ info.ElementAt(4)) * 100).ToString();
+                    blr.Text = (float.Parse(rus.Text) * info.ElementAt(4) / 100).ToString();
+                    usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
+                    eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
+                    uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
+                    gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
+                    bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
+                }
+                else if (uk.IsFocused)
+                {
+                    blr.Text = (float.Parse(uk.Text) * info.ElementAt(6) / 100).ToString();
+                    usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
+                    eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
+                    gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
+                    rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
+                    bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
+                }
+                else if (gbp.IsFocused)
+                {
+                    blr.Text = (float.Parse(gbp.Text) * info.ElementAt(5)).ToString();
+                    usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
+                    eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
+                    uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
+                    bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
+                    rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
+                }
+                else if (bgn.IsFocused)
+                {
+                    blr.Text = (float.Parse(bgn.Text) * info.ElementAt(3)).ToString();
+                    usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
+                    eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
+                    rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
+                    uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
+                    gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
+                }
+            } catch (Exception a)
             {
-                blr.Text = (float.Parse(usa.Text) * info.ElementAt(0)).ToString();
-                eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
-                rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
-                uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
-                gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
-                bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
-            }
-          else if (eur.IsFocused)
-            {
-                blr.Text = (float.Parse(eur.Text) * info.ElementAt(1)).ToString();
-                usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
-                rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
-                uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
-                gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
-                bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
-            }
-          else if (rus.IsFocused)
-            {
-                //rus.Text = ((float.Parse(blr.Text)/ info.ElementAt(4)) * 100).ToString();
-                blr.Text = (float.Parse(rus.Text) * info.ElementAt(4) / 100).ToString();
-                usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
-                eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
-                uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
-                gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
-                bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
-            }
-          else if (uk.IsFocused)
-            {
-                blr.Text = (float.Parse(uk.Text) * info.ElementAt(6) / 100).ToString();
-                usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
-                eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
-                gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
-                rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
-                bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
-            }
-          else if (gbp.IsFocused)
-            {
-                blr.Text = (float.Parse(gbp.Text) * info.ElementAt(5)).ToString();
-                usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
-                eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
-                uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
-                bgn.Text = (float.Parse(blr.Text) / info.ElementAt(3)).ToString();
-                rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
-            }
-          else if (bgn.IsFocused)
-            {
-                blr.Text = (float.Parse(bgn.Text) * info.ElementAt(3)).ToString();
-                usa.Text = (float.Parse(blr.Text) / info.ElementAt(0)).ToString();
-                eur.Text = (float.Parse(blr.Text) / info.ElementAt(1)).ToString();
-                rus.Text = ((float.Parse(blr.Text) / info.ElementAt(4)) * 100).ToString();
-                uk.Text = ((float.Parse(blr.Text) / info.ElementAt(6)) * 100).ToString();
-                gbp.Text = (float.Parse(blr.Text) / info.ElementAt(5)).ToString();
+                MessageBox.Show("Invalid data");
+                blr.Clear();
+                usa.Clear();
+                eur.Clear();
+                rus.Clear();
+                uk.Clear();
+                bgn.Clear();
+                gbp.Clear();
+            
             }
         }
-        
-        
+
+
         private void blr_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if(blr.Text!="")
-            isEnable();
+            if (blr.Text != "")
+                isEnable();
         }
 
         private void usa_SelectionChanged(object sender, RoutedEventArgs e)
         {
             if (usa.Text != "")
                 isEnable();
-           
+
         }
 
         private void eur_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if(eur.Text!="")
-            isEnable();
-           
+            if (eur.Text != "")
+                isEnable();
+
         }
 
         private void rus_SelectionChanged(object sender, RoutedEventArgs e)
-        { if(rus.Text!="")
-            isEnable();
-          
+        { if (rus.Text != "")
+                isEnable();
+
         }
 
         private void uk_SelectionChanged(object sender, RoutedEventArgs e)
-        { 
-            if(uk.Text!="")
-            isEnable();
-            
+        {
+            if (uk.Text != "")
+                isEnable();
+
         }
 
         private void gbp_SelectionChanged(object sender, RoutedEventArgs e)
-        { if(gbp.Text!="")
-            isEnable();
-            
+        { if (gbp.Text != "")
+                isEnable();
+
         }
 
         private void bgn_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if(bgn.Text!="")
-            isEnable();
-            
+            if (bgn.Text != "")
+                isEnable();
+
         }
 
-        
+
 
         private void blr_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if(!(Char.IsDigit(e.Text,0)|| (e.Text==".") && (!blr.Text.Contains(".")&& blr.Text.Length!=0)))
+            if (!(Char.IsDigit(e.Text, 0) || (e.Text == ".") && (!blr.Text.Contains(".") && blr.Text.Length != 0)))
             {
                 e.Handled = true;
             }
@@ -218,5 +232,7 @@ namespace Course_kepeer_1
                 e.Handled = true;
             }
         }
+    
     }
+
 }

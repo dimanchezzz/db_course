@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace Course_kepeer_1
 {
@@ -23,6 +24,136 @@ namespace Course_kepeer_1
         public Services()
         {
             InitializeComponent();
+            RefreshList();
+            amount.IsEnabled = false;
+         //   drop.IsEnabled = false;
+          
         }
+        
+        string depart;
+        float perc, termm;
+        int rest,id_service;
+
+        private void services_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string select = services.SelectedItem.ToString();
+            using (SqlConnection connection = new SqlConnection(Hash.connect_str))
+            {
+                connection.Open();
+                string take = " exec Take_service_info @name='" + select + "';";
+                SqlCommand commandd = new SqlCommand(take, connection);
+                SqlDataReader reader = commandd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        id_service = int.Parse(reader.GetValue(0).ToString());
+                        term.Text = "Term: " + reader.GetValue(2);
+                        termm = float.Parse(reader.GetValue(2).ToString());
+                        percent.Text = "Percent: " + reader.GetValue(3) + " %";
+                        perc = float.Parse(reader.GetValue(3).ToString());
+                        restrict.Text = "Restriction: " + reader.GetValue(6);
+                        rest = int.Parse(reader.GetValue(6).ToString());
+                        date_create.Text = "Date create: " + reader.GetValue(7);
+                        comment.Text = "Comment: " + reader.GetValue(8);
+                        dep.Text = reader.GetValue(5).ToString();
+                        amount.IsEnabled = true;
+                    }                
+                }
+                reader.Close();
+              
+            }
+        }
+        private void RefreshList()
+        {
+            using (SqlConnection connection = new SqlConnection(Hash.connect_str))
+            {
+                connection.Open();
+                string take = "exec take_name_serv";
+                SqlCommand commandd = new SqlCommand(take, connection);
+                SqlDataReader reader = commandd.ExecuteReader();
+
+                List<string> list = new List<string>();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(reader.GetValue(0).ToString());
+                    }
+                }
+                reader.Close();
+                services.ItemsSource = list;
+            }
+        }
+        public delegate void MethodCHeck();
+        public static event MethodCHeck Sent;
+        private void pay_calc()
+        {
+            if (dep.Text == "Credit departament")
+            {
+                 pay.Text = (float.Parse(amount.Text) / 12 * termm * perc / 100 + float.Parse(amount.Text)).ToString();
+               
+            }
+         else
+            {
+                float payy = (float.Parse(amount.Text) / 1200 * perc + float.Parse(amount.Text));
+                for (int i = 0; i < termm - 1; i++)
+                {
+                    payy += (payy / 1200 * perc);
+                }
+                pay.Text = payy.ToString();
+            }
+        }
+        private void drop_Click(object sender, RoutedEventArgs e)
+        {
+            if (dep.Text == "Credit departament")
+            {
+                if (int.Parse(amount.Text.ToString()) > rest)
+                {
+                    MessageBox.Show("Amount exceeds restriction");
+                    amount.Clear();
+                    return;
+                }
+                else
+                {
+                    using (SqlConnection connection = new SqlConnection(Hash.connect_str))
+                    {
+                        connection.Open();
+                        string str = "exec Add_conract_user @id_service="+id_service+ ",@id_client="+main_user_window.Id_user+ @",@status='new',
+                            @amount="+amount.Text+ ", @pay="+pay.Text+",@debt="+pay.Text+";";
+                        SqlCommand command = new SqlCommand(str,connection);
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("You request send;");
+                        amount.Clear();
+                        Sent();
+                        return;
+                    }
+                }
+            }
+              
+            else
+            {
+
+            }
+            
+        }     
+
+        private void amount_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+           
+            if (amount.Text != "")
+                pay_calc();
+            else if (amount.Text == "")
+                pay.Text = "";
+        }
+
+        private void amount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(Char.IsDigit(e.Text, 0)))
+            {
+                e.Handled = true;
+            }
+        }       
     }
 }

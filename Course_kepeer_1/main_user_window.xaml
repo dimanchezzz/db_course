@@ -26,7 +26,6 @@
                 <MenuItem Header="  Money &#xa;Transaction" Click="MenuItem_Click_7"  Margin="0,5,0,5"/>
                 <MenuItem Header="Credit  calc" Click="MenuItem_Click_6" Margin="3,5,0,5"/>
                 <MenuItem Header="Calc" Click="MenuItem_Click_5" Margin="3,5,10,5" />
-                <MenuItem Header= "Help" Margin="3,5,0,5" Click="MenuItem_Click_4"/>
             
                 <Menu/>
             </Menu>
