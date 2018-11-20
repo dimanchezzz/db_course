@@ -26,13 +26,11 @@ namespace Course_kepeer_1
             InitializeComponent();
             RefreshList();
             amount.IsEnabled = false;
-         //   drop.IsEnabled = false;
-          
-        }
-        
+           drop.IsEnabled = false;          
+        }       
         string depart;
         float perc, termm;
-        int rest,id_service;
+        int rest,id_service, count;
 
         private void services_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -105,47 +103,83 @@ namespace Course_kepeer_1
                 pay.Text = payy.ToString();
             }
         }
+        public void go()
+        {
+            using (SqlConnection connection = new SqlConnection(Hash.connect_str))
+            {
+                connection.Open();
+                string str = "exec Add_conract_user @id_service=" + id_service + ",@id_client=" + main_user_window.Id_user + @",@status='new',
+                            @amount=" + amount.Text + ", @pay=" + pay.Text + ",@debt=" + pay.Text + ";";
+                SqlCommand command = new SqlCommand(str, connection);
+                command.ExecuteNonQuery();
+                MessageBox.Show("You request send;");
+                amount.Clear();
+                Sent();
+                return;
+            }
+        }
         private void drop_Click(object sender, RoutedEventArgs e)
         {
-            if (dep.Text == "Credit departament")
+            using (SqlConnection connection = new SqlConnection(Hash.connect_str))
             {
-                if (int.Parse(amount.Text.ToString()) > rest)
+                connection.Open();
+                string str = "select dbo.Take_count_contract ("+ main_user_window.Id_user + ")";
+                SqlCommand command = new SqlCommand(str, connection);
+               count=int.Parse(command.ExecuteScalar().ToString());
+            }
+            if (count > 0)
+            {
+                MessageBox.Show("Request this type already sent");
+                Sent();
+                return;
+            }
+
+                if (dep.Text == "Credit departament")
                 {
-                    MessageBox.Show("Amount exceeds restriction");
-                    amount.Clear();
+                    if (int.Parse(amount.Text.ToString()) > rest)
+                    {
+                        MessageBox.Show("Amount exceeds restriction");
+                        amount.Clear();
+                    Sent();
                     return;
+                    }
+
+                    else
+                    {
+                    go();
+                    }
                 }
                 else
                 {
-                    using (SqlConnection connection = new SqlConnection(Hash.connect_str))
-                    {
-                        connection.Open();
-                        string str = "exec Add_conract_user @id_service="+id_service+ ",@id_client="+main_user_window.Id_user+ @",@status='new',
-                            @amount="+amount.Text+ ", @pay="+pay.Text+",@debt="+pay.Text+";";
-                        SqlCommand command = new SqlCommand(str,connection);
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("You request send;");
-                        amount.Clear();
-                        Sent();
-                        return;
-                    }
+                if (int.Parse(amount.Text.ToString()) < rest)
+                {
+                    MessageBox.Show("Amount less than restriction");
+                    amount.Clear();
+                    Sent();
+                    return;
+                } else
+                {
+                    go();
                 }
-            }
-              
-            else
-            {
 
-            }
-            
+
+            }          
         }     
-
         private void amount_SelectionChanged(object sender, RoutedEventArgs e)
         {
            
             if (amount.Text != "")
+            {
                 pay_calc();
+                drop.IsEnabled = true;
+            }
+                
             else if (amount.Text == "")
+            {
                 pay.Text = "";
+                drop.IsEnabled = false;
+            }
+                
         }
 
         private void amount_PreviewTextInput(object sender, TextCompositionEventArgs e)

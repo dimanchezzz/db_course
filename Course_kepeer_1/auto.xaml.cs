@@ -28,11 +28,7 @@ namespace Course_kepeer_1
             a = o;
             DataContext = this;
         }
-        private void click_reset(object sender, RoutedEventArgs e)
-        {
-            Password_res pas = new Password_res();
-            pas.Show();
-        }
+       
       private void  Button_Click(object sender, RoutedEventArgs e)
         {
 

@@ -26,7 +26,6 @@
                 </StackPanel>
             </xctk:WatermarkPasswordBox.Watermark>
         </xctk:WatermarkPasswordBox>
-        <Button MinHeight="30" MaxWidth="100" VerticalAlignment="Bottom" IsDefault="True" Margin="120,0,0,100" Name="autoris" Content="Authorization" Click="Button_Click" />
-        <Button MinHeight="30" MaxWidth="100" VerticalAlignment="Bottom" Margin="0,0,120,100" Content="Password reset" Click="click_reset" />
+        <Button MinHeight="30" MaxWidth="100" VerticalAlignment="Bottom" IsDefault="True" Margin="60,0,60,95" Name="autoris" Content="Authorization" Click="Button_Click" RenderTransformOrigin="0.5,0.5" />
     </Grid>
 </Page>

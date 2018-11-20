@@ -24,6 +24,7 @@ namespace Course_kepeer_1
     {
         
         public static int Id_user;
+        public static float pursee;
         
 
         public main_user_window(string a,int Id)
@@ -31,10 +32,11 @@ namespace Course_kepeer_1
             InitializeComponent();
             Id_user = Id;
             date.Content = a;
-            Question.onNewUser += Closedf;
-            Delete_User.onNewUser += Closedf;
+            Question.onNewUser += Closedf; 
+                    
             Refresh_Purse();
             Services.Sent += refresh_serv;
+            Add_purse.Purse += Refresh_Purse;
 
         }
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -86,7 +88,7 @@ namespace Course_kepeer_1
                 connection.Open();
                 string take_purse = "select dbo.Take_purse("+ Id_user +");";
                 SqlCommand take_purse_ = new SqlCommand(take_purse, connection);
-                float pursee = Convert.ToInt64(take_purse_.ExecuteScalar());
+                pursee = Convert.ToInt64(take_purse_.ExecuteScalar());
                 purse.Content = pursee.ToString();              
             }
             
@@ -127,10 +129,7 @@ namespace Course_kepeer_1
             User.Content = new My_contract();
         }
 
-        private void MenuItem_Click_9(object sender, RoutedEventArgs e)
-        {
-            User.Content = new History();
-        }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -285,11 +285,9 @@ D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\auto.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Calc.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Change_pass.g.cs
-D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Delete_User.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\first.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\MainWindow.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\main_user_window.g.cs
-D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Password_res.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Question.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\register.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\App.g.cs
@@ -302,11 +300,9 @@ D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\auto.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Calc.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Change_pass.baml
-D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Delete_User.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\first.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\MainWindow.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\main_user_window.baml
-D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Password_res.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Question.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\register.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Course_kepeer_1.g.resources
@@ -318,10 +314,8 @@ D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Credit_page.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Personal_Area.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Personal_Area.baml
-D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\History.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Money_transaction.g.cs
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\My_contract.g.cs
-D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\History.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Money_transaction.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\My_contract.baml
 D:\Файлы учеба\5 sem\course\Course_kepeer_1\Course_kepeer_1\obj\Debug\Services.g.cs
