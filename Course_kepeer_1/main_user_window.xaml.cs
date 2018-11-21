@@ -25,10 +25,14 @@ namespace Course_kepeer_1
         
         public static int Id_user;
         public static float pursee;
+        public int status;
+        public static string Name_user;
         
 
-        public main_user_window(string a,int Id)
-        {      
+        public main_user_window(string a,int Id,int st)
+        {
+            Name_user = a;
+            status = st;
             InitializeComponent();
             Id_user = Id;
             date.Content = a;
@@ -37,8 +41,24 @@ namespace Course_kepeer_1
             Refresh_Purse();
             Services.Sent += refresh_serv;
             Add_purse.Purse += Refresh_Purse;
+            check_st();
 
         }
+        public void check_st()
+        {
+            if(status==1)
+            {
+                MessageBox.Show("Changed status some contacts");
+                using (SqlConnection connection = new SqlConnection(Hash.connect_str))
+                {
+                    connection.Open();
+                    string exe = " exec Update_status_user @name='"+Name_user+"'";
+                    SqlCommand cmd = new SqlCommand(exe, connection);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+       
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             main_user.Close();
@@ -88,7 +108,7 @@ namespace Course_kepeer_1
                 connection.Open();
                 string take_purse = "select dbo.Take_purse("+ Id_user +");";
                 SqlCommand take_purse_ = new SqlCommand(take_purse, connection);
-                pursee = Convert.ToInt64(take_purse_.ExecuteScalar());
+                pursee = float.Parse(take_purse_.ExecuteScalar().ToString());
                 purse.Content = pursee.ToString();              
             }
             

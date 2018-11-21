@@ -87,7 +87,9 @@ namespace Course_kepeer_1
                     read.Close();
                 }
             }
-            if (statuss == "new")
+            if (statuss == "active")
+                to_pay.IsEnabled = true;
+            else
                 to_pay.IsEnabled = false;
         }
 

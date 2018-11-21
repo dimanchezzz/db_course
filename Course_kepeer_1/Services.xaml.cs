@@ -123,7 +123,7 @@ namespace Course_kepeer_1
             using (SqlConnection connection = new SqlConnection(Hash.connect_str))
             {
                 connection.Open();
-                string str = "select dbo.Take_count_contract ("+ main_user_window.Id_user + ")";
+                string str = "select dbo.Take_count_contract ("+ main_user_window.Id_user + ","+id_service+")";
                 SqlCommand command = new SqlCommand(str, connection);
                count=int.Parse(command.ExecuteScalar().ToString());
             }

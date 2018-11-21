@@ -34,6 +34,7 @@ namespace Course_kepeer_1
 
             string sqlExpression = "select dbo.auto_user('"+auto_log.Text +"', '"+auto_pass.Password+"');" ;
             string take_id = " select dbo.Take_id('"+auto_log.Text+"');";
+            string take_status = "select Bank_DB.dbo.IsStatus('" + auto_log.Text + "')";
           
             using (SqlConnection connection = new SqlConnection(Hash.connect_str))
             {
@@ -49,10 +50,12 @@ namespace Course_kepeer_1
                else if (number==1)
                 {
                     SqlCommand take_id_ = new SqlCommand(take_id, connection);
+                    SqlCommand take_statu = new SqlCommand(take_status, connection);
+                    int status = Convert.ToInt32(take_statu.ExecuteScalar());
                     int id= Convert.ToInt32(take_id_.ExecuteScalar());
                     
                     string login = auto_log.Text;
-                    main_user_window man = new main_user_window(login,id);
+                    main_user_window man = new main_user_window(login,id,status);
                     man.Show();
                     a.Close();
 

@@ -14,7 +14,7 @@
                 <GridView>
                     <GridViewColumn Width="150" Header="Before operation" DisplayMemberBinding="{Binding before}"/>
                     <GridViewColumn Width="150" Header="After operation" DisplayMemberBinding="{Binding after}"/>
-                    <GridViewColumn Width="100" Header="Resource" DisplayMemberBinding="{Binding resourc}"/>
+                    <GridViewColumn Width="190" Header="Resource" DisplayMemberBinding="{Binding resourc}"/>
                     <GridViewColumn Width="190" Header="date" DisplayMemberBinding="{Binding date}"/>
 
                 </GridView>
