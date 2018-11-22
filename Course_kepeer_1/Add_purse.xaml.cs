@@ -28,9 +28,10 @@ namespace Course_kepeer_1
 
         }
         
-        public delegate void MethodCHeck();
+      
         public delegate void MMM();
         public static event MMM but;
+        public delegate void MethodCHeck();
         public static event MethodCHeck Purse;
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -47,6 +48,7 @@ namespace Course_kepeer_1
                 cmd.Parameters.AddWithValue("@purse", main_user_window.pursee);
                 cmd.Parameters.AddWithValue("@name_oper",   res.Text );
                 cmd.Parameters.AddWithValue("@after", pu);
+               
                 var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
                 returnParameter.Direction = ParameterDirection.ReturnValue;
                 cmd.ExecuteNonQuery();

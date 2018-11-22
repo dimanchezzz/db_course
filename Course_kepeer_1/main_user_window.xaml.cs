@@ -41,8 +41,14 @@ namespace Course_kepeer_1
             Refresh_Purse();
             Services.Sent += refresh_serv;
             Add_purse.Purse += Refresh_Purse;
+            My_contract.refresh += refresh;
+            My_contract.Purse += Refresh_Purse;
             check_st();
 
+        }
+        public void refresh()
+        {
+               User.Content = new My_contract();
         }
         public void check_st()
         {

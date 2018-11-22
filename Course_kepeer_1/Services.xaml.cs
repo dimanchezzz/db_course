@@ -28,12 +28,12 @@ namespace Course_kepeer_1
             amount.IsEnabled = false;
            drop.IsEnabled = false;          
         }       
-        string depart;
         float perc, termm;
         int rest,id_service, count;
 
         private void services_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            amount.Clear();
             string select = services.SelectedItem.ToString();
             using (SqlConnection connection = new SqlConnection(Hash.connect_str))
             {
@@ -67,7 +67,7 @@ namespace Course_kepeer_1
             using (SqlConnection connection = new SqlConnection(Hash.connect_str))
             {
                 connection.Open();
-                string take = "exec take_name_serv";
+                string take = "exec take_name_serv_1";
                 SqlCommand commandd = new SqlCommand(take, connection);
                 SqlDataReader reader = commandd.ExecuteReader();
 
@@ -159,7 +159,18 @@ namespace Course_kepeer_1
                     return;
                 } else
                 {
-                    go();
+                    using (SqlConnection connection = new SqlConnection(Hash.connect_str))
+                    {
+                        connection.Open();
+                        string str = "exec Add_conract_user @id_service=" + id_service + ",@id_client=" + main_user_window.Id_user + @",@status='new',
+                            @amount=" + amount.Text + ", @pay=" + pay.Text + ",@debt=0;";
+                        SqlCommand cmd = new SqlCommand(str, connection);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("You request send;");
+                        amount.Clear();
+                        Sent();
+                    }
+                    /////////////исправить
                 }
 
 
